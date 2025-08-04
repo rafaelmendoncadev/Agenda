@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Agenda Pessoal";
+}
+
+<div class="hero-section bg-primary text-white py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Organize sua vida com nossa Agenda Pessoal</h1>
+                <p class="lead mb-4">
+                    Gerencie seus compromissos, eventos e tarefas de forma simples e eficiente. 
+                    Sua agenda pessoal, sempre organizada e acessível.
+                </p>
+                <div class="d-grid gap-2 d-md-flex">
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-light btn-lg me-2">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                        <a asp-controller="Eventos" asp-action="Index" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-calendar-check"></i> Meus Eventos
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-light btn-lg me-2">
+                            <i class="bi bi-person-plus"></i> Criar Conta
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-box-arrow-in-right"></i> Entrar
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="bi bi-calendar3 display-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-plus text-primary display-4 mb-3"></i>
+                    <h5 class="card-title">Crie Eventos</h5>
+                    <p class="card-text">
+                        Adicione facilmente seus compromissos, reuniões e eventos importantes. 
+                        Defina horários, descrições e organize sua agenda.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-clock text-success display-4 mb-3"></i>
+                    <h5 class="card-title">Gerencie Horários</h5>
+                    <p class="card-text">
+                        Controle seus horários com precisão. Visualize sua agenda diária, 
+                        semanal e mensal de forma clara e organizada.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-shield-check text-warning display-4 mb-3"></i>
+                    <h5 class="card-title">Dados Seguros</h5>
+                    <p class="card-text">
+                        Seus dados estão protegidos. Cada usuário tem acesso apenas aos 
+                        seus próprios eventos e compromissos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Pronto para começar?</h2>
+                    <p class="lead mb-4">
+                        Crie sua conta gratuita e comece a organizar sua agenda hoje mesmo!
+                    </p>
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg">
+                        Criar Conta Gratuita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

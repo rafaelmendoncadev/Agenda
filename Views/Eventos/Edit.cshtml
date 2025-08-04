@@ -1,0 +1,109 @@
+@model Agenda.Models.Evento
+
+@{
+    ViewData["Title"] = "Editar Evento";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil-square"></i> Editar Evento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="UserId" />
+                        <input type="hidden" asp-for="DataCriacao" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="Titulo" class="form-label"></label>
+                            <input asp-for="Titulo" class="form-control" />
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Descricao" class="form-label"></label>
+                            <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="DiaInteiro" id="diaInteiroCheck" />
+                                <label class="form-check-label" asp-for="DiaInteiro">
+                                    Evento de dia inteiro
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DataInicio" class="form-label"></label>
+                                    <input asp-for="DataInicio" class="form-control" type="datetime-local" id="dataInicio" />
+                                    <span asp-validation-for="DataInicio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DataFim" class="form-label"></label>
+                                    <input asp-for="DataFim" class="form-control" type="datetime-local" id="dataFim" />
+                                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-2">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-warning text-dark">
+                                <i class="bi bi-check-lg"></i> Salvar Alterações
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const diaInteiroCheck = document.getElementById('diaInteiroCheck');
+            const dataInicio = document.getElementById('dataInicio');
+            const dataFim = document.getElementById('dataFim');
+            
+            // Configurar campos na inicialização
+            if (diaInteiroCheck.checked) {
+                dataInicio.type = 'date';
+                dataFim.type = 'date';
+            }
+            
+            diaInteiroCheck.addEventListener('change', function() {
+                if (this.checked) {
+                    // Converter para apenas data
+                    const inicioDate = new Date(dataInicio.value).toISOString().split('T')[0];
+                    const fimDate = new Date(dataFim.value).toISOString().split('T')[0];
+                    
+                    dataInicio.type = 'date';
+                    dataFim.type = 'date';
+                    dataInicio.value = inicioDate;
+                    dataFim.value = fimDate;
+                } else {
+                    // Converter para data e hora
+                    dataInicio.type = 'datetime-local';
+                    dataFim.type = 'datetime-local';
+                }
+            });
+        });
+    </script>
+}

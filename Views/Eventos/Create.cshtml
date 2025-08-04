@@ -1,0 +1,97 @@
+@model Agenda.Models.Evento
+
+@{
+    ViewData["Title"] = "Criar Evento";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-calendar-plus"></i> Criar Novo Evento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Titulo" class="form-label"></label>
+                            <input asp-for="Titulo" class="form-control" placeholder="Digite o título do evento" />
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Descricao" class="form-label"></label>
+                            <textarea asp-for="Descricao" class="form-control" rows="3" placeholder="Descrição opcional do evento"></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="DiaInteiro" id="diaInteiroCheck" />
+                                <label class="form-check-label" asp-for="DiaInteiro">
+                                    Evento de dia inteiro
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DataInicio" class="form-label"></label>
+                                    <input asp-for="DataInicio" class="form-control" type="datetime-local" id="dataInicio" />
+                                    <span asp-validation-for="DataInicio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DataFim" class="form-label"></label>
+                                    <input asp-for="DataFim" class="form-control" type="datetime-local" id="dataFim" />
+                                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-2">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg"></i> Criar Evento
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        document.getElementById('diaInteiroCheck').addEventListener('change', function() {
+            const dataInicio = document.getElementById('dataInicio');
+            const dataFim = document.getElementById('dataFim');
+            
+            if (this.checked) {
+                // Converter para apenas data
+                const inicioDate = new Date(dataInicio.value).toISOString().split('T')[0];
+                const fimDate = new Date(dataFim.value).toISOString().split('T')[0];
+                
+                dataInicio.type = 'date';
+                dataFim.type = 'date';
+                dataInicio.value = inicioDate;
+                dataFim.value = fimDate;
+            } else {
+                // Converter para data e hora
+                dataInicio.type = 'datetime-local';
+                dataFim.type = 'datetime-local';
+            }
+        });
+    </script>
+}

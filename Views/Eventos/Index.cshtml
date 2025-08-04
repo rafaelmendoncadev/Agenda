@@ -1,0 +1,119 @@
+@model IEnumerable<Agenda.Models.Evento>
+
+@{
+    ViewData["Title"] = "Meus Eventos";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="bi bi-calendar-event text-primary"></i> Meus Eventos</h1>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-calendar-plus"></i> Novo Evento
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="bi bi-calendar-x display-1 text-muted mb-3"></i>
+                        <h4 class="card-title">Nenhum evento encontrado</h4>
+                        <p class="card-text text-muted">
+                            Você ainda não possui eventos cadastrados. Comece criando seu primeiro evento!
+                        </p>
+                        <a asp-action="Create" class="btn btn-primary">
+                            <i class="bi bi-calendar-plus"></i> Criar Primeiro Evento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-calendar-event"></i>
+                                @Html.DisplayFor(modelItem => item.Titulo)
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(item.Descricao))
+                            {
+                                <p class="card-text">
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </p>
+                            }
+                            
+                            <div class="mb-2">
+                                <small class="text-muted">
+                                    <i class="bi bi-calendar3"></i>
+                                    @if (item.DiaInteiro)
+                                    {
+                                        <span>@item.DataInicio.ToString("dd/MM/yyyy")</span>
+                                        @if (item.DataInicio.Date != item.DataFim.Date)
+                                        {
+                                            <span> - @item.DataFim.ToString("dd/MM/yyyy")</span>
+                                        }
+                                        <span class="badge bg-info ms-1">Dia inteiro</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.DataInicio.ToString("dd/MM/yyyy HH:mm")</span>
+                                        <br>
+                                        <i class="bi bi-arrow-right"></i>
+                                        <span>@item.DataFim.ToString("dd/MM/yyyy HH:mm")</span>
+                                    }
+                                </small>
+                            </div>
+
+                            @{
+                                var agora = DateTime.Now;
+                                var status = "";
+                                var badgeClass = "";
+                                
+                                if (item.DataFim < agora)
+                                {
+                                    status = "Finalizado";
+                                    badgeClass = "bg-secondary";
+                                }
+                                else if (item.DataInicio <= agora && agora <= item.DataFim)
+                                {
+                                    status = "Em andamento";
+                                    badgeClass = "bg-success";
+                                }
+                                else
+                                {
+                                    status = "Agendado";
+                                    badgeClass = "bg-warning text-dark";
+                                }
+                            }
+                            
+                            <span class="badge @badgeClass">@status</span>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group w-100" role="group">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">
+                                    <i class="bi bi-eye"></i> Ver
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
