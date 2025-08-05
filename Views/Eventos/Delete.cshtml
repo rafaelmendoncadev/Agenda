@@ -7,80 +7,84 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow border-danger">
-                <div class="card-header bg-danger text-white">
-                    <h4 class="mb-0">
-                        <i class="bi bi-exclamation-triangle"></i> Confirmar Exclusão
+            <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-gray-800) 100%); border: 2px solid var(--bs-danger) !important;">
+                <div class="card-header text-white border-0" style="background: linear-gradient(135deg, var(--bs-danger) 0%, var(--bs-red) 100%);">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-exclamation-triangle me-2"></i> Confirmar Exclusão
                     </h4>
                 </div>
-                <div class="card-body">
-                    <div class="alert alert-warning" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
+                <div class="card-body text-light">
+                    <div class="alert alert-warning border-0 shadow" role="alert" style="background: linear-gradient(135deg, var(--bs-warning) 0%, var(--bs-orange) 100%);">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
                         <strong>Atenção!</strong> Esta ação não pode ser desfeita. O evento será permanentemente removido.
                     </div>
 
-                    <div class="mb-4">
-                        <h5 class="text-danger">Tem certeza que deseja excluir este evento?</h5>
+                    <div class="mb-4 text-center">
+                        <h5 class="text-danger fw-bold fs-4">Tem certeza que deseja excluir este evento?</h5>
                     </div>
 
-                    <div class="card bg-light">
+                    <div class="card border-0 shadow" style="background: linear-gradient(135deg, var(--bs-gray-800) 0%, var(--bs-gray-700) 100%);">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">@Html.DisplayFor(model => model.Titulo)</h5>
+                            <h5 class="card-title text-primary fw-bold mb-3">@Html.DisplayFor(model => model.Titulo)</h5>
                             
                             @if (!string.IsNullOrEmpty(Model.Descricao))
                             {
-                                <p class="card-text">@Html.DisplayFor(model => model.Descricao)</p>
+                                <p class="card-text text-light mb-3">@Html.DisplayFor(model => model.Descricao)</p>
                             }
                             
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <small class="text-muted">
-                                        <i class="bi bi-calendar3"></i>
-                                        <strong>Início:</strong>
-                                        @if (Model.DiaInteiro)
-                                        {
-                                            @Model.DataInicio.ToString("dd/MM/yyyy")
-                                        }
-                                        else
-                                        {
-                                            @Model.DataInicio.ToString("dd/MM/yyyy HH:mm")
-                                        }
-                                    </small>
+                                    <div class="p-2 rounded" style="background: rgba(var(--bs-success-rgb), 0.1);">
+                                        <small class="text-success fw-semibold">
+                                            <i class="bi bi-calendar-date me-1"></i>
+                                            <strong>Início:</strong>
+                                            @if (Model.DiaInteiro)
+                                            {
+                                                @Model.DataInicio.ToString("dd/MM/yyyy")
+                                            }
+                                            else
+                                            {
+                                                @Model.DataInicio.ToString("dd/MM/yyyy HH:mm")
+                                            }
+                                        </small>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <small class="text-muted">
-                                        <i class="bi bi-calendar3"></i>
-                                        <strong>Fim:</strong>
-                                        @if (Model.DiaInteiro)
-                                        {
-                                            @Model.DataFim.ToString("dd/MM/yyyy")
-                                        }
-                                        else
-                                        {
-                                            @Model.DataFim.ToString("dd/MM/yyyy HH:mm")
-                                        }
-                                    </small>
+                                    <div class="p-2 rounded" style="background: rgba(var(--bs-danger-rgb), 0.1);">
+                                        <small class="text-danger fw-semibold">
+                                            <i class="bi bi-calendar-check me-1"></i>
+                                            <strong>Fim:</strong>
+                                            @if (Model.DiaInteiro)
+                                            {
+                                                @Model.DataFim.ToString("dd/MM/yyyy")
+                                            }
+                                            else
+                                            {
+                                                @Model.DataFim.ToString("dd/MM/yyyy HH:mm")
+                                            }
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             
                             @if (Model.DiaInteiro)
                             {
-                                <span class="badge bg-info mt-2">
-                                    <i class="bi bi-calendar-day"></i> Dia inteiro
+                                <span class="badge bg-info fs-6 px-3 py-2">
+                                    <i class="bi bi-calendar-day me-1"></i> Dia inteiro
                                 </span>
                             }
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-transparent">
+                <div class="card-footer bg-transparent border-0 pt-0">
                     <form asp-action="Delete" method="post">
                         <input type="hidden" asp-for="Id" />
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a asp-action="Index" class="btn btn-secondary me-2">
-                                <i class="bi bi-arrow-left"></i> Cancelar
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg me-2">
+                                <i class="bi bi-arrow-left me-1"></i> Cancelar
                             </a>
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este evento?')">
-                                <i class="bi bi-trash"></i> Confirmar Exclusão
+                            <button type="submit" class="btn btn-danger btn-lg shadow fw-bold" onclick="return confirm('Tem certeza que deseja excluir este evento?')">
+                                <i class="bi bi-trash me-1"></i> Confirmar Exclusão
                             </button>
                         </div>
                     </form>

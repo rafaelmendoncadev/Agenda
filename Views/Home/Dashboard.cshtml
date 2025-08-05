@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-warning text-dark">
+            <div class="card bg-warning">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div>
@@ -71,12 +71,12 @@
                         <i class="bi bi-calendar-day"></i> Eventos de Hoje
                     </h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-light">
                     @if (!eventosHoje.Any())
                     {
                         <div class="text-center text-muted">
-                            <i class="bi bi-calendar-x display-4 mb-3"></i>
-                            <p>Nenhum evento programado para hoje.</p>
+                            <i class="bi bi-calendar-x display-4 mb-3 text-secondary"></i>
+                            <p class="fs-5">Nenhum evento programado para hoje.</p>
                         </div>
                     }
                     else
@@ -84,10 +84,10 @@
                         <div class="list-group list-group-flush">
                             @foreach (var evento in eventosHoje)
                             {
-                                <div class="list-group-item">
+                                <div class="list-group-item border-0 mb-2 rounded" style="background: linear-gradient(135deg, var(--bs-gray-700) 0%, var(--bs-gray-600) 100%);">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-1">@evento.Titulo</h6>
-                                        <small class="text-muted">
+                                        <h6 class="mb-1 text-light fw-semibold">@evento.Titulo</h6>
+                                        <small class="text-info">
                                             @if (evento.DiaInteiro)
                                             {
                                                 <span class="badge bg-info">Dia inteiro</span>
@@ -100,11 +100,11 @@
                                     </div>
                                     @if (!string.IsNullOrEmpty(evento.Descricao))
                                     {
-                                        <p class="mb-1 text-muted">@evento.Descricao</p>
+                                        <p class="mb-1 text-light-emphasis">@evento.Descricao</p>
                                     }
                                     <div class="mt-2">
                                         <a asp-controller="Eventos" asp-action="Details" asp-route-id="@evento.Id" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-eye"></i> Ver
+                                            <i class="bi bi-eye me-1"></i> Ver
                                         </a>
                                     </div>
                                 </div>
@@ -126,19 +126,19 @@
         <!-- Próximos Eventos -->
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
-                <div class="card-header bg-warning text-dark">
+                <div class="card-header bg-warning">
                     <h5 class="mb-0">
                         <i class="bi bi-clock"></i> Próximos Eventos
                     </h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-light">
                     @if (!proximosEventos.Any())
                     {
                         <div class="text-center text-muted">
-                            <i class="bi bi-clock display-4 mb-3"></i>
-                            <p>Nenhum evento futuro programado.</p>
-                            <a asp-controller="Eventos" asp-action="Create" class="btn btn-primary">
-                                <i class="bi bi-calendar-plus"></i> Criar Evento
+                            <i class="bi bi-clock display-4 mb-3 text-secondary"></i>
+                            <p class="fs-5">Nenhum evento futuro programado.</p>
+                            <a asp-controller="Eventos" asp-action="Create" class="btn btn-primary shadow">
+                                <i class="bi bi-calendar-plus me-1"></i> Criar Evento
                             </a>
                         </div>
                     }
@@ -147,10 +147,10 @@
                         <div class="list-group list-group-flush">
                             @foreach (var evento in proximosEventos)
                             {
-                                <div class="list-group-item">
+                                <div class="list-group-item border-0 mb-2 rounded" style="background: linear-gradient(135deg, var(--bs-gray-700) 0%, var(--bs-gray-600) 100%);">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-1">@evento.Titulo</h6>
-                                        <small class="text-muted">
+                                        <h6 class="mb-1 text-light fw-semibold">@evento.Titulo</h6>
+                                        <small class="text-info">
                                             @if (evento.DiaInteiro)
                                             {
                                                 @evento.DataInicio.ToString("dd/MM")
@@ -163,11 +163,11 @@
                                     </div>
                                     @if (!string.IsNullOrEmpty(evento.Descricao))
                                     {
-                                        <p class="mb-1 text-muted">@evento.Descricao</p>
+                                        <p class="mb-1 text-light-emphasis">@evento.Descricao</p>
                                     }
                                     <div class="mt-2">
                                         <a asp-controller="Eventos" asp-action="Details" asp-route-id="@evento.Id" class="btn btn-sm btn-outline-primary">
-                                            <i class="bi bi-eye"></i> Ver
+                                            <i class="bi bi-eye me-1"></i> Ver
                                         </a>
                                     </div>
                                 </div>
@@ -177,9 +177,9 @@
                 </div>
                 @if (proximosEventos.Any())
                 {
-                    <div class="card-footer">
-                        <a asp-controller="Eventos" asp-action="Index" class="btn btn-warning text-dark btn-sm">
-                            <i class="bi bi-calendar-event"></i> Ver Todos os Eventos
+                    <div class="card-footer bg-transparent border-0">
+                        <a asp-controller="Eventos" asp-action="Index" class="btn btn-warning btn-sm shadow">
+                            <i class="bi bi-calendar-event me-1"></i> Ver Todos os Eventos
                         </a>
                     </div>
                 }

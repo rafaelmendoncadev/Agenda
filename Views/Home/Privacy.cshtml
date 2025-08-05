@@ -1,6 +1,108 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+@{
+    ViewData["Title"] = "Política de Privacidade";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-gray-800) 100%);">
+                <div class="card-header text-white border-0" style="background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-blue) 100%);">
+                    <h1 class="mb-0 fw-bold">
+                        <i class="bi bi-shield-check me-2"></i> @ViewData["Title"]
+                    </h1>
+                </div>
+                <div class="card-body text-light">
+                    <div class="mb-4">
+                        <h3 class="text-primary fw-bold mb-3">
+                            <i class="bi bi-info-circle me-2"></i> Informações Gerais
+                        </h3>
+                        <p class="lead">
+                            Esta página detalha nossa política de privacidade e como tratamos seus dados pessoais 
+                            em nosso sistema de agenda pessoal.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 class="text-success fw-semibold mb-3">
+                            <i class="bi bi-database-check me-2"></i> Coleta de Dados
+                        </h4>
+                        <p>
+                            Coletamos apenas as informações necessárias para o funcionamento do sistema:
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                Informações de conta (email, nome de usuário)
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                Dados dos eventos criados por você
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-check-circle text-success me-2"></i>
+                                Preferências do sistema (tema, configurações)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 class="text-warning fw-semibold mb-3">
+                            <i class="bi bi-shield-lock me-2"></i> Proteção de Dados
+                        </h4>
+                        <p>
+                            Seus dados são protegidos através de:
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-lock text-warning me-2"></i>
+                                Criptografia de senhas
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lock text-warning me-2"></i>
+                                Acesso restrito aos seus próprios dados
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lock text-warning me-2"></i>
+                                Conexões seguras (HTTPS)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 class="text-info fw-semibold mb-3">
+                            <i class="bi bi-person-check me-2"></i> Seus Direitos
+                        </h4>
+                        <p>
+                            Você tem o direito de:
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-eye text-info me-2"></i>
+                                Acessar seus dados pessoais
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-pencil text-info me-2"></i>
+                                Corrigir informações incorretas
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-trash text-info me-2"></i>
+                                Solicitar a exclusão de sua conta
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-info border-0" style="background: linear-gradient(135deg, var(--bs-info-bg-subtle) 0%, var(--bs-cyan-bg-subtle) 100%);">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Importante:</strong> Esta política pode ser atualizada periodicamente. 
+                        Recomendamos que você a revise regularmente.
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg shadow">
+                        <i class="bi bi-house me-1"></i> Voltar ao Início
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

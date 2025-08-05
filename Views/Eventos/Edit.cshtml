@@ -7,13 +7,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
-                    <h4 class="mb-0">
-                        <i class="bi bi-pencil-square"></i> Editar Evento
+            <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-gray-800) 100%);">
+                <div class="card-header text-white border-0" style="background: linear-gradient(135deg, var(--bs-warning) 0%, var(--bs-orange) 100%);">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-pencil-square me-2"></i> Editar Evento
                     </h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-light">
                     <form asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
@@ -21,22 +21,22 @@
                         <input type="hidden" asp-for="DataCriacao" />
                         
                         <div class="mb-3">
-                            <label asp-for="Titulo" class="form-label"></label>
-                            <input asp-for="Titulo" class="form-control" />
+                            <label asp-for="Titulo" class="form-label fw-semibold"></label>
+                            <input asp-for="Titulo" class="form-control form-control-lg" />
                             <span asp-validation-for="Titulo" class="text-danger"></span>
                         </div>
                         
                         <div class="mb-3">
-                            <label asp-for="Descricao" class="form-label"></label>
-                            <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                            <label asp-for="Descricao" class="form-label fw-semibold"></label>
+                            <textarea asp-for="Descricao" class="form-control" rows="4"></textarea>
                             <span asp-validation-for="Descricao" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <div class="form-check">
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
                                 <input class="form-check-input" asp-for="DiaInteiro" id="diaInteiroCheck" />
-                                <label class="form-check-label" asp-for="DiaInteiro">
-                                    Evento de dia inteiro
+                                <label class="form-check-label fw-semibold" asp-for="DiaInteiro">
+                                    <i class="bi bi-clock me-1"></i> Evento de dia inteiro
                                 </label>
                             </div>
                         </div>
@@ -44,26 +44,30 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label asp-for="DataInicio" class="form-label"></label>
+                                    <label asp-for="DataInicio" class="form-label fw-semibold">
+                                        <i class="bi bi-calendar-date me-1"></i> Data de Início
+                                    </label>
                                     <input asp-for="DataInicio" class="form-control" type="datetime-local" id="dataInicio" />
                                     <span asp-validation-for="DataInicio" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label asp-for="DataFim" class="form-label"></label>
+                                    <label asp-for="DataFim" class="form-label fw-semibold">
+                                        <i class="bi bi-calendar-check me-1"></i> Data de Fim
+                                    </label>
                                     <input asp-for="DataFim" class="form-control" type="datetime-local" id="dataFim" />
                                     <span asp-validation-for="DataFim" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a asp-action="Index" class="btn btn-secondary me-2">
-                                <i class="bi bi-arrow-left"></i> Cancelar
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg me-2">
+                                <i class="bi bi-arrow-left me-1"></i> Cancelar
                             </a>
-                            <button type="submit" class="btn btn-warning text-dark">
-                                <i class="bi bi-check-lg"></i> Salvar Alterações
+                            <button type="submit" class="btn btn-warning btn-lg shadow fw-bold">
+                                <i class="bi bi-check-lg me-1"></i> Salvar Alterações
                             </button>
                         </div>
                     </form>

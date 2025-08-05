@@ -6,25 +6,30 @@
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1><i class="bi bi-calendar-event text-primary"></i> Meus Eventos</h1>
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="bi bi-calendar-plus"></i> Novo Evento
+        <h1 class="display-5 fw-bold">
+            <i class="bi bi-calendar-event text-primary me-2"></i> 
+            <span class="bg-gradient text-primary">Meus Eventos</span>
+        </h1>
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow">
+            <i class="bi bi-calendar-plus me-2"></i> Novo Evento
         </a>
     </div>
 
     @if (!Model.Any())
     {
-        <div class="row">
-            <div class="col-12">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <i class="bi bi-calendar-x display-1 text-muted mb-3"></i>
-                        <h4 class="card-title">Nenhum evento encontrado</h4>
-                        <p class="card-text text-muted">
-                            Você ainda não possui eventos cadastrados. Comece criando seu primeiro evento!
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card text-center shadow-lg border-0" style="background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-secondary) 100%);">
+                    <div class="card-body py-5">
+                        <div class="mb-4">
+                            <i class="bi bi-calendar-x display-1 text-primary mb-3 opacity-75"></i>
+                        </div>
+                        <h4 class="card-title text-light fw-bold mb-3">Nenhum evento encontrado</h4>
+                        <p class="card-text text-light opacity-75 mb-4 fs-5">
+                            Você ainda não possui eventos cadastrados. Comece criando seu primeiro evento e organize sua agenda!
                         </p>
-                        <a asp-action="Create" class="btn btn-primary">
-                            <i class="bi bi-calendar-plus"></i> Criar Primeiro Evento
+                        <a asp-action="Create" class="btn btn-primary btn-lg shadow px-4">
+                            <i class="bi bi-calendar-plus me-2"></i> Criar Primeiro Evento
                         </a>
                     </div>
                 </div>
@@ -37,14 +42,14 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">
-                                <i class="bi bi-calendar-event"></i>
+                    <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-gray-800) 100%); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="card-header text-white border-0" style="background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-info) 100%);">
+                            <h5 class="card-title mb-0 fw-bold">
+                                <i class="bi bi-calendar-event me-2"></i>
                                 @Html.DisplayFor(modelItem => item.Titulo)
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body text-light">
                             @if (!string.IsNullOrEmpty(item.Descricao))
                             {
                                 <p class="card-text">
@@ -52,9 +57,9 @@
                                 </p>
                             }
                             
-                            <div class="mb-2">
-                                <small class="text-muted">
-                                    <i class="bi bi-calendar3"></i>
+                            <div class="mb-3">
+                                <div class="text-light opacity-75">
+                                    <i class="bi bi-calendar3 me-1"></i>
                                     @if (item.DiaInteiro)
                                     {
                                         <span>@item.DataInicio.ToString("dd/MM/yyyy")</span>
@@ -62,16 +67,16 @@
                                         {
                                             <span> - @item.DataFim.ToString("dd/MM/yyyy")</span>
                                         }
-                                        <span class="badge bg-info ms-1">Dia inteiro</span>
+                                        <span class="badge bg-info ms-2">Dia inteiro</span>
                                     }
                                     else
                                     {
                                         <span>@item.DataInicio.ToString("dd/MM/yyyy HH:mm")</span>
                                         <br>
-                                        <i class="bi bi-arrow-right"></i>
+                                        <i class="bi bi-arrow-right mx-1"></i>
                                         <span>@item.DataFim.ToString("dd/MM/yyyy HH:mm")</span>
                                     }
-                                </small>
+                                </div>
                             </div>
 
                             @{
@@ -92,22 +97,22 @@
                                 else
                                 {
                                     status = "Agendado";
-                                    badgeClass = "bg-warning text-dark";
+                                    badgeClass = "bg-warning";
                                 }
                             }
                             
-                            <span class="badge @badgeClass">@status</span>
+                            <span class="badge @badgeClass fs-6 px-3 py-2">@status</span>
                         </div>
-                        <div class="card-footer bg-transparent">
+                        <div class="card-footer bg-transparent border-0 pt-0">
                             <div class="btn-group w-100" role="group">
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">
-                                    <i class="bi bi-eye"></i> Ver
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">
+                                    <i class="bi bi-eye me-1"></i> Ver
                                 </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-pencil"></i> Editar
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">
+                                    <i class="bi bi-pencil me-1"></i> Editar
                                 </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Excluir
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash me-1"></i> Excluir
                                 </a>
                             </div>
                         </div>

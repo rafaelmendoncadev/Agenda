@@ -1,78 +1,96 @@
-﻿@{
+@{
     ViewData["Title"] = "Agenda Pessoal";
 }
 
-<div class="hero-section bg-primary text-white py-5 mb-5">
+<div class="hero-section bg-gradient" style="background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-success) 100%); color: white; padding: 4rem 0; margin-bottom: 3rem; border-radius: 0 0 2rem 2rem;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">Organize sua vida com nossa Agenda Pessoal</h1>
-                <p class="lead mb-4">
+                <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInLeft">
+                    <i class="bi bi-calendar-heart text-warning me-3"></i>
+                    Organize sua vida com nossa Agenda Pessoal
+                </h1>
+                <p class="lead mb-4 opacity-90">
                     Gerencie seus compromissos, eventos e tarefas de forma simples e eficiente. 
-                    Sua agenda pessoal, sempre organizada e acessível.
+                    Sua agenda pessoal, sempre organizada e acessível em qualquer dispositivo.
                 </p>
                 <div class="d-grid gap-2 d-md-flex">
                     @if (User.Identity!.IsAuthenticated)
                     {
-                        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-light btn-lg me-2">
+                        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-light btn-lg me-2 shadow">
                             <i class="bi bi-speedometer2"></i> Dashboard
                         </a>
-                        <a asp-controller="Eventos" asp-action="Index" class="btn btn-outline-light btn-lg">
+                        <a asp-controller="Eventos" asp-action="Index" class="btn btn-outline-light btn-lg shadow">
                             <i class="bi bi-calendar-check"></i> Meus Eventos
                         </a>
                     }
                     else
                     {
-                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-light btn-lg me-2">
-                            <i class="bi bi-person-plus"></i> Criar Conta
+                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-warning btn-lg me-2 shadow fw-bold">
+                            <i class="bi bi-person-plus"></i> Criar Conta Grátis
                         </a>
-                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg">
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg shadow">
                             <i class="bi bi-box-arrow-in-right"></i> Entrar
                         </a>
                     }
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <i class="bi bi-calendar3 display-1 opacity-75"></i>
+                <div class="position-relative">
+                    <i class="bi bi-calendar3 display-1 opacity-25 position-absolute" style="top: 20px; left: 20px;"></i>
+                    <i class="bi bi-calendar-check display-1 text-warning"></i>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container mb-5">
-    <div class="row">
+    <div class="row text-center mb-5">
+        <div class="col-12">
+            <h2 class="display-5 fw-bold mb-3">Por que escolher nossa Agenda?</h2>
+            <p class="lead text-muted">Descubra as funcionalidades que tornam sua organização mais eficiente</p>
+        </div>
+    </div>
+    <div class="row g-4">
         <div class="col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="bi bi-calendar-plus text-primary display-4 mb-3"></i>
-                    <h5 class="card-title">Crie Eventos</h5>
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, var(--bs-primary-bg-subtle) 0%, var(--bs-secondary-bg-subtle) 100%);">
+                <div class="card-body text-center p-4">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-calendar-plus text-white display-6"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Crie Eventos</h5>
                     <p class="card-text">
                         Adicione facilmente seus compromissos, reuniões e eventos importantes. 
-                        Defina horários, descrições e organize sua agenda.
+                        Defina horários, descrições e organize sua agenda com poucos cliques.
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="bi bi-clock text-success display-4 mb-3"></i>
-                    <h5 class="card-title">Gerencie Horários</h5>
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, var(--bs-success-bg-subtle) 0%, var(--bs-info-bg-subtle) 100%);">
+                <div class="card-body text-center p-4">
+                    <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-clock text-white display-6"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Gerencie Horários</h5>
                     <p class="card-text">
                         Controle seus horários com precisão. Visualize sua agenda diária, 
-                        semanal e mensal de forma clara e organizada.
+                        semanal e mensal de forma clara, organizada e intuitiva.
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="bi bi-shield-check text-warning display-4 mb-3"></i>
-                    <h5 class="card-title">Dados Seguros</h5>
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, var(--bs-warning-bg-subtle) 0%, var(--bs-danger-bg-subtle) 100%);">
+                <div class="card-body text-center p-4">
+                    <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="bi bi-shield-check text-white display-6"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Dados Seguros</h5>
                     <p class="card-text">
-                        Seus dados estão protegidos. Cada usuário tem acesso apenas aos 
-                        seus próprios eventos e compromissos.
+                        Seus dados estão protegidos com as melhores práticas de segurança. 
+                        Cada usuário tem acesso apenas aos seus próprios eventos e compromissos.
                     </p>
                 </div>
             </div>
@@ -82,17 +100,26 @@
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <div class="bg-light py-5">
+    <div class="py-5" style="background: linear-gradient(135deg, var(--bs-secondary-bg) 0%, var(--bs-tertiary-bg) 100%); border-radius: 2rem 2rem 0 0;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="mb-4">Pronto para começar?</h2>
+                    <div class="mb-4">
+                        <i class="bi bi-rocket-takeoff display-4 text-success mb-3"></i>
+                    </div>
+                    <h2 class="display-5 fw-bold mb-4">Pronto para começar?</h2>
                     <p class="lead mb-4">
                         Crie sua conta gratuita e comece a organizar sua agenda hoje mesmo!
+                        Junte-se a milhares de usuários que já transformaram sua produtividade.
                     </p>
-                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg">
-                        Criar Conta Gratuita
-                    </a>
+                    <div class="d-grid gap-2 d-md-flex justify-content-center">
+                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-success btn-lg shadow me-2">
+                            <i class="bi bi-person-plus"></i> Criar Conta Gratuita
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-box-arrow-in-right"></i> Já tenho conta
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
